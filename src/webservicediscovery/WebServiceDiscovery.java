@@ -26,7 +26,7 @@ public class WebServiceDiscovery {
     static List<String> req_out_params = new ArrayList<>();
     static List<String> adv_out_params = new ArrayList<>();
     
-    static String base_path = "D:/4th year/Web Services/Project/OWLS-TC4_PDDL/OWLS-TC4_PDDL/htdocs";
+    static String base_path = "/home/deeksha/WebServices/OWLS-TC4_PDDL/htdocs";
 //    static String base_path = "localhost";
     
     static int w1=1, w2=2, w3=3, w4=4;
