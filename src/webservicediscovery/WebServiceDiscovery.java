@@ -5,6 +5,7 @@
 package webservicediscovery;
 
 import java.io.*;
+import java.net.*;
 import java.util.*;
 import javax.xml.parsers.DocumentBuilder;
 import javax.xml.parsers.DocumentBuilderFactory;
@@ -26,8 +27,8 @@ public class WebServiceDiscovery {
     static List<String> req_out_params = new ArrayList<>();
     static List<String> adv_out_params = new ArrayList<>();
     
-    static String base_path = "/home/deeksha/WebServices/OWLS-TC4_PDDL/htdocs";
-//    static String base_path = "localhost";
+    // static String base_path = "/home/deeksha/WebServices/OWLS-TC4_PDDL/htdocs";
+   static String base_path = "http://127.0.0.1";
     
     static int w1=1, w2=2, w3=3, w4=4;
     
@@ -91,7 +92,8 @@ public class WebServiceDiscovery {
                 return w4;
             }
 //            System.out.println(query_param);
-            File file = new File(query_param.substring(0, query_param.indexOf('#')));
+            // File file = new File(query_param.substring(0, query_param.indexOf('#')));
+            InputStream file = new URL(query_param.substring(0, query_param.indexOf('#'))).openStream();
             OWLOntologyManager manager = OWLManager.createOWLOntologyManager();
             OWLOntology ont = manager.loadOntologyFromOntologyDocument(file);
             for (OWLClass owl_class : ont.getClassesInSignature()) {
