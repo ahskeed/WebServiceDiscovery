@@ -223,7 +223,7 @@ public class WebServiceDiscovery {
             for(int i=0;i<in_res.length;i++) {
                 in_score += in_spp[in_res[i][0]][in_res[i][1]];
             }
-            System.out.println("Input parameters match score: " + in_score);
+            // System.out.println("Input parameters match score: " + in_score);
             
             //For output parameters
             for(int i=0;i<orow;i++) {
@@ -249,7 +249,7 @@ public class WebServiceDiscovery {
             for(int i=0;i<out_res.length;i++) {
                 out_score += out_spp[out_res[i][0]][out_res[i][1]];
             }
-            System.out.println("Output parameters match score: " + out_score);
+            // System.out.println("Output parameters match score: " + out_score);
             return ((0.4*in_score)+(0.6*out_score));
             
         } 
@@ -282,7 +282,7 @@ public class WebServiceDiscovery {
         int num = 0;
 //        adv = "3wheeledcar_price_service.owls";
 //        advBipartite.put(adv, get_best_match(adv));
-        while((adv = br.readLine())!=null&&num<10){
+        while((adv = br.readLine())!=null){
             advBipartite.put(adv, get_best_match(adv));
             num++;
         }
