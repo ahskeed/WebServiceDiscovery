@@ -21,61 +21,111 @@ public class FunctionMatching {
     List<String> adv_in_params = new ArrayList<>();
     List<String> req_out_params = new ArrayList<>();
     List<String> adv_out_params = new ArrayList<>();
+    String req_desription, adv_description;
     
     String base_path = "http://127.0.0.1";
     
     int w1=1, w2=2, w3=3, w4=4;
-    
-    public void get_description() throws IOException, ParserConfigurationException, SAXException {
-        
-        BufferedReader br = new BufferedReader(new FileReader("advertisements.txt"));
-        PrintWriter write = new PrintWriter(new FileWriter("adv_desc.txt"));
-        String adv_file,desc;
-        while((adv_file = br.readLine())!=null){
+
+    public void get_adv_details(String file_name)
+    {
+        try
+        {
             DocumentBuilderFactory docFactory = DocumentBuilderFactory.newInstance();
             DocumentBuilder docBuilder = docFactory.newDocumentBuilder();
-            Document doc = docBuilder.parse(base_path+"/services/1.1/"+adv_file);
+            Document doc = docBuilder.parse(file_name);
             doc.getDocumentElement().normalize();
-            NodeList nodes = doc.getElementsByTagName("profile:textDescription");
+            NodeList nodes = doc.getElementsByTagName("process:parameterType");
+            List<String> in_params = new ArrayList<>();
+            List<String> out_params = new ArrayList<>();
+            for(int i=0;i<nodes.getLength();i++) {
+                switch (nodes.item(i).getParentNode().getNodeName()) {
+                    case "process:Input":
+                        in_params.add(nodes.item(i).getTextContent().replace("http://127.0.0.1", base_path));
+                        break;
+                    case "process:Output":
+                        out_params.add(nodes.item(i).getTextContent().replace("http://127.0.0.1", base_path));
+                        break;
+                }
+            }
+            adv_in_params.clear();
+            adv_out_params.clear();
+            adv_in_params.addAll(in_params);
+            adv_out_params.addAll(out_params);
+            nodes = doc.getElementsByTagName("profile:textDescription");
             if(nodes.getLength()==1) {
-                desc = nodes.item(0).getTextContent();
-                desc = desc.replace("\n", " ");
-                write.print(adv_file+"|"+desc+"\n");
+                adv_description = nodes.item(0).getTextContent();
+                adv_description = adv_description.replace("\n", " ");
             }
         }
-        br.close();
-        write.close();
+        catch(IOException ex)
+        {
+
+        }
+        catch(ParserConfigurationException ex)
+        {
+
+        }
+        catch(SAXException ex)
+        {
+
+        }
+        catch(Exception ex)
+        {
+            ex.printStackTrace();
+        }
+        
     }
-    
-    public void get_params(String type, String file_name) throws IOException, ParserConfigurationException, SAXException {
-        DocumentBuilderFactory docFactory = DocumentBuilderFactory.newInstance();
-        DocumentBuilder docBuilder = docFactory.newDocumentBuilder();
-        Document doc = docBuilder.parse(file_name);
-        doc.getDocumentElement().normalize();
-        NodeList nodes = doc.getElementsByTagName("process:parameterType");
-        List<String> in_params = new ArrayList<>();
-        List<String> out_params = new ArrayList<>();
-        for(int i=0;i<nodes.getLength();i++) {
-            switch (nodes.item(i).getParentNode().getNodeName()) {
-                case "process:Input":
-                    in_params.add(nodes.item(i).getTextContent().replace("http://127.0.0.1", base_path));
-                    break;
-                case "process:Output":
-                    out_params.add(nodes.item(i).getTextContent().replace("http://127.0.0.1", base_path));
-                    break;
+
+    public void get_req_details(String req_file)
+    {
+        try
+        {
+            String file_name = base_path+"/queries/1.1/"+req_file;
+            DocumentBuilderFactory docFactory = DocumentBuilderFactory.newInstance();
+            DocumentBuilder docBuilder = docFactory.newDocumentBuilder();
+            Document doc = docBuilder.parse(file_name);
+            doc.getDocumentElement().normalize();
+            NodeList nodes = doc.getElementsByTagName("process:parameterType");
+            List<String> in_params = new ArrayList<>();
+            List<String> out_params = new ArrayList<>();
+            for(int i=0;i<nodes.getLength();i++) 
+            {
+                switch (nodes.item(i).getParentNode().getNodeName()) 
+                {
+                    case "process:Input":
+                        in_params.add(nodes.item(i).getTextContent().replace("http://127.0.0.1", base_path));
+                        break;
+                    case "process:Output":
+                        out_params.add(nodes.item(i).getTextContent().replace("http://127.0.0.1", base_path));
+                        break;
+                }
+            }
+            req_in_params.clear();
+            req_out_params.clear();
+            req_in_params.addAll(in_params);
+            req_out_params.addAll(out_params);
+            nodes = doc.getElementsByTagName("profile:textDescription");
+            if(nodes.getLength()==1) {
+                req_desription = nodes.item(0).getTextContent();
+                req_desription = req_desription.replace("\n", " ");
             }
         }
-        switch (type) {
-            case "Request":         req_in_params.clear();
-                                    req_out_params.clear();
-                                    req_in_params.addAll(in_params);
-                                    req_out_params.addAll(out_params);
-                                    break;
-            case "Advertisement":   adv_in_params.clear();
-                                    adv_out_params.clear();
-                                    adv_in_params.addAll(in_params);
-                                    adv_out_params.addAll(out_params);
-                                    break;
+        catch(IOException ex)
+        {
+
+        }
+        catch(ParserConfigurationException ex)
+        {
+
+        }
+        catch(SAXException ex)
+        {
+
+        }
+        catch(Exception ex)
+        {
+            ex.printStackTrace();
         }
     }
     
@@ -85,18 +135,15 @@ public class FunctionMatching {
             if(!(query_param.substring(start, query_param.indexOf('#')).equals(adv_param.substring(start, adv_param.indexOf('#'))))) {
                 return w4;
             }
-//            System.out.println(query_param);
             // File file = new File(query_param.substring(0, query_param.indexOf('#')));
             InputStream file = new URL(query_param.substring(0, query_param.indexOf('#'))).openStream();
             OWLOntologyManager manager = OWLManager.createOWLOntologyManager();
             OWLOntology ont = manager.loadOntologyFromOntologyDocument(file);
             for (OWLClass owl_class : ont.getClassesInSignature()) {
                 if(owl_class.toStringID().equals("http://www.w3.org/2002/07/owl#Thing")||owl_class.toStringID().equals("http://www.w3.org/2002/07/owl#Property")) {
-                    //System.out.println(owl_class);
                     continue;
                 }
                 else {
-                    //System.out.println("Not true: "+owl_class.getIRI());
                     String adv = adv_param.replace(base_path, "http://127.0.0.1");
                     String query = query_param.replace(base_path, "http://127.0.0.1");
                     if(adv.equals(owl_class.toStringID())) {
@@ -168,13 +215,10 @@ public class FunctionMatching {
         }
     }
     
-    public double get_best_match(String adv_file) 
+    public double get_best_match(String adv_file) throws IOException, ParserConfigurationException, SAXException 
     {
         try 
         {
-            //get_params("Request", base_path+"/queries/1.1/shoppingmall_cameraprice_service.owls");
-            get_params("Request", base_path+"/queries/1.1/1personbicyclecar_price_service.owls");
-            get_params("Advertisement", base_path+"/services/1.1/"+adv_file);
             int irow = adv_in_params.size(), icol = req_in_params.size();
             int orow = adv_out_params.size(), ocol = req_out_params.size();
             int isize, osize;
@@ -196,54 +240,38 @@ public class FunctionMatching {
             //For input parameters
             for(int i=0;i<irow;i++) {
                 for(int j=0;j<icol;j++) {
-//                    System.out.println("Input");
                     in_spp[i][j] = match(req_in_params.get(j),adv_in_params.get(i));
                 }
             }
             
-//            System.out.println("The bipartite graph constructed for input parameters is as follows:");
-//            print_graph(in_spp);   
-            
             for(int i = 0; i < in_spp.length; i++) {
                 in_temp[i] = in_spp[i].clone();
             }
+
             HungarianAlgorithm hungarian = new HungarianAlgorithm();
             int in_res[][] = hungarian.computeAssignments(in_temp);
-            /*int result[][] = new int[in_spp.length][in_spp[0].length];
-            for(int[] row: result) {
-                Arrays.fill(row, -1);
-            }*/
             in_score = 0;
             for(int i=0;i<in_res.length;i++) {
                 in_score += in_spp[in_res[i][0]][in_res[i][1]];
             }
-            // System.out.println("Input parameters match score: " + in_score);
             
             //For output parameters
             for(int i=0;i<orow;i++) {
                 for(int j=0;j<ocol;j++) {
-//                    System.out.println("Output");
                     out_spp[i][j] = match(req_out_params.get(j),adv_out_params.get(i));
                 }
             }
             
-//            System.out.println("The bipartite graph constructed for output parameters is as follows:");
-//            print_graph(out_spp);
-            
-            
             for(int i = 0; i < out_spp.length; i++) {
                 out_temp[i] = out_spp[i].clone();
             }
+
             int out_res[][] = hungarian.computeAssignments(out_temp);
-            /*int result[][] = new int[out_spp.length][out_spp[0].length];
-            for(int[] row: result) {
-                Arrays.fill(row, -1);
-            }*/
             out_score = 0;
             for(int i=0;i<out_res.length;i++) {
                 out_score += out_spp[out_res[i][0]][out_res[i][1]];
             }
-            // System.out.println("Output parameters match score: " + out_score);
+
             return ((0.4*in_score)+(0.6*out_score));
             
         } 
@@ -251,7 +279,38 @@ public class FunctionMatching {
         {
             ex.printStackTrace();
         }
-        return 0.0;
+        return -1.0;
+    }
+
+    public double get_match_score(String adv_file)
+    {
+        try
+        {
+            double func_match_score=0, desc_match_score=0;
+            String file_name = base_path+"/services/1.1/"+adv_file;
+            get_adv_details(file_name);
+            func_match_score = get_best_match(adv_file);
+            // desc_match_score = get_desc_score(adv_file);
+
+            return ((0.4*desc_match_score)+(0.6*func_match_score));
+        }
+        catch(IOException ex)
+        {
+
+        }
+        catch(ParserConfigurationException ex)
+        {
+
+        }
+        catch(SAXException ex)
+        {
+
+        }
+        catch(Exception ex)
+        {
+            ex.printStackTrace();
+        }
+        return -1.0;
     }
     
     public void get_files() throws IOException {

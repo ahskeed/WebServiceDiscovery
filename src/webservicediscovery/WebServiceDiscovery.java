@@ -12,16 +12,15 @@ public class WebServiceDiscovery {
     
     public static void main(String[] args) throws IOException {
         
-        BufferedReader br = new BufferedReader(new FileReader("advertisements.txt"));
         HashMap advBipartite = new HashMap();
         String adv;
-        int num = 0;
-        
+        BufferedReader br = new BufferedReader(new FileReader("advertisements.txt"));
         FunctionMatching funcMatch = new FunctionMatching();
 
+        funcMatch.get_req_details("1personbicyclecar_price_service.owls");
+
         while((adv = br.readLine())!=null){
-            advBipartite.put(adv, funcMatch.get_best_match(adv));
-            num++;
+            advBipartite.put(adv, funcMatch.get_match_score(adv));
         }
         
         
