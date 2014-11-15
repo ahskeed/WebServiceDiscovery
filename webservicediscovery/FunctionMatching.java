@@ -13,122 +13,14 @@ import org.w3c.dom.NodeList;
 import org.xml.sax.SAXException;
 
 import webservicediscovery.HungarianAlgorithm;
+import webservicediscovery.ServiceDescMatchingEngine;
 
 
-public class FunctionMatching {
-
-    List<String> req_in_params = new ArrayList<>();
-    List<String> adv_in_params = new ArrayList<>();
-    List<String> req_out_params = new ArrayList<>();
-    List<String> adv_out_params = new ArrayList<>();
-    String req_desription, adv_description;
-    
+public class FunctionMatching 
+{
     String base_path = "http://127.0.0.1";
-    
     int w1=1, w2=2, w3=3, w4=4;
-
-    public void get_adv_details(String file_name)
-    {
-        try
-        {
-            DocumentBuilderFactory docFactory = DocumentBuilderFactory.newInstance();
-            DocumentBuilder docBuilder = docFactory.newDocumentBuilder();
-            Document doc = docBuilder.parse(file_name);
-            doc.getDocumentElement().normalize();
-            NodeList nodes = doc.getElementsByTagName("process:parameterType");
-            List<String> in_params = new ArrayList<>();
-            List<String> out_params = new ArrayList<>();
-            for(int i=0;i<nodes.getLength();i++) {
-                switch (nodes.item(i).getParentNode().getNodeName()) {
-                    case "process:Input":
-                        in_params.add(nodes.item(i).getTextContent().replace("http://127.0.0.1", base_path));
-                        break;
-                    case "process:Output":
-                        out_params.add(nodes.item(i).getTextContent().replace("http://127.0.0.1", base_path));
-                        break;
-                }
-            }
-            adv_in_params.clear();
-            adv_out_params.clear();
-            adv_in_params.addAll(in_params);
-            adv_out_params.addAll(out_params);
-            nodes = doc.getElementsByTagName("profile:textDescription");
-            if(nodes.getLength()==1) {
-                adv_description = nodes.item(0).getTextContent();
-                adv_description = adv_description.replace("\n", " ");
-            }
-        }
-        catch(IOException ex)
-        {
-
-        }
-        catch(ParserConfigurationException ex)
-        {
-
-        }
-        catch(SAXException ex)
-        {
-
-        }
-        catch(Exception ex)
-        {
-            ex.printStackTrace();
-        }
-        
-    }
-
-    public void get_req_details(String req_file)
-    {
-        try
-        {
-            String file_name = base_path+"/queries/1.1/"+req_file;
-            DocumentBuilderFactory docFactory = DocumentBuilderFactory.newInstance();
-            DocumentBuilder docBuilder = docFactory.newDocumentBuilder();
-            Document doc = docBuilder.parse(file_name);
-            doc.getDocumentElement().normalize();
-            NodeList nodes = doc.getElementsByTagName("process:parameterType");
-            List<String> in_params = new ArrayList<>();
-            List<String> out_params = new ArrayList<>();
-            for(int i=0;i<nodes.getLength();i++) 
-            {
-                switch (nodes.item(i).getParentNode().getNodeName()) 
-                {
-                    case "process:Input":
-                        in_params.add(nodes.item(i).getTextContent().replace("http://127.0.0.1", base_path));
-                        break;
-                    case "process:Output":
-                        out_params.add(nodes.item(i).getTextContent().replace("http://127.0.0.1", base_path));
-                        break;
-                }
-            }
-            req_in_params.clear();
-            req_out_params.clear();
-            req_in_params.addAll(in_params);
-            req_out_params.addAll(out_params);
-            nodes = doc.getElementsByTagName("profile:textDescription");
-            if(nodes.getLength()==1) {
-                req_desription = nodes.item(0).getTextContent();
-                req_desription = req_desription.replace("\n", " ");
-            }
-        }
-        catch(IOException ex)
-        {
-
-        }
-        catch(ParserConfigurationException ex)
-        {
-
-        }
-        catch(SAXException ex)
-        {
-
-        }
-        catch(Exception ex)
-        {
-            ex.printStackTrace();
-        }
-    }
-    
+ 
     public int match(String query_param, String adv_param) throws OWLOntologyCreationException {
         try {
             int start = base_path.length();
@@ -203,7 +95,7 @@ public class FunctionMatching {
         } catch (Exception ex) {
             ex.printStackTrace();
         } 
-        return 0;
+        return 5;
     }
     
     public void print_graph(int[][] graph) {
@@ -215,7 +107,7 @@ public class FunctionMatching {
         }
     }
     
-    public double get_best_match(String adv_file) throws IOException, ParserConfigurationException, SAXException 
+    public double get_best_match(String adv_file, List<String> req_in_params, List<String> req_out_params, List<String> adv_in_params, List<String> adv_out_params)
     {
         try 
         {
@@ -231,10 +123,10 @@ public class FunctionMatching {
             int in_score, out_score;
             
             for(int[] row: in_spp) {
-                Arrays.fill(row, 0);
+                Arrays.fill(row, 5);
             }
             for(int[] row: out_spp) {
-                Arrays.fill(row, 0);
+                Arrays.fill(row, 5);
             }
             
             //For input parameters
@@ -279,51 +171,22 @@ public class FunctionMatching {
         {
             ex.printStackTrace();
         }
-        return -1.0;
+        return 0.0;
     }
 
-    public double get_match_score(String adv_file)
-    {
-        try
-        {
-            double func_match_score=0, desc_match_score=0;
-            String file_name = base_path+"/services/1.1/"+adv_file;
-            get_adv_details(file_name);
-            func_match_score = get_best_match(adv_file);
-            // desc_match_score = get_desc_score(adv_file);
-
-            return ((0.4*desc_match_score)+(0.6*func_match_score));
-        }
-        catch(IOException ex)
-        {
-
-        }
-        catch(ParserConfigurationException ex)
-        {
-
-        }
-        catch(SAXException ex)
-        {
-
-        }
-        catch(Exception ex)
-        {
-            ex.printStackTrace();
-        }
-        return -1.0;
-    }
+ }  
     
-    public void get_files() throws IOException {
-        File folder = new File("C:\\xampp\\htdocs\\services\\1.1");
-        File[] listOfFiles = folder.listFiles();
-        PrintWriter write = new PrintWriter(new FileWriter("advertisements.txt"));
+/*public void get_files() throws IOException {
+    File folder = new File("C:\\xampp\\htdocs\\services\\1.1");
+    File[] listOfFiles = folder.listFiles();
+    PrintWriter write = new PrintWriter(new FileWriter("advertisements.txt"));
 
-        for (int i = 0; i < listOfFiles.length; i++) {
-            if (listOfFiles[i].isFile()) {
-                System.out.println(listOfFiles[i].getName());
-                write.print(listOfFiles[i].getName()+"\n");
-            } 
-        }
-        write.close();
+    for (int i = 0; i < listOfFiles.length; i++) {
+        if (listOfFiles[i].isFile()) {
+            System.out.println(listOfFiles[i].getName());
+            write.print(listOfFiles[i].getName()+"\n");
+        } 
     }
-}
+    write.close();
+}*/
+
