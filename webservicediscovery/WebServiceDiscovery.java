@@ -63,7 +63,7 @@ public class WebServiceDiscovery {
         
     }
 
-    public static void get_req_details(String req_file)
+    /*public static void get_req_details(String req_file)
     {
         try
         {
@@ -101,6 +101,53 @@ public class WebServiceDiscovery {
         {
             ex.printStackTrace();
         }
+    }*/
+
+    public static void get_req_details(String req_file)
+    {
+    	try
+    	{
+    		BufferedReader br = new BufferedReader(new FileReader(req_file));
+	    	String line = "", jsonString = "";
+	    	JSONObject request;
+	    	JSONArray jsonArray;
+	    	List<String> in_params = new ArrayList<>();
+	    	List<String> out_params = new ArrayList<>();
+	    	String description = "";
+
+	    	in_params.clear();
+	    	out_params.clear();
+
+	    	while ((line = br.readLine()) != null) {
+				jsonString += line;
+			}
+
+			br.close();
+
+			request = new JSONObject(jsonString);
+			jsonArray = request.getJSONArray("input");
+			for(int i=0;i<jsonArray.length();i++)
+			{
+				in_params.add("http://127.0.0.1/ontology/"+jsonArray.getString(i));
+			}
+			jsonArray = request.getJSONArray("output");
+			for(int i=0;i<jsonArray.length();i++)
+			{
+				out_params.add("http://127.0.0.1/ontology/"+jsonArray.getString(i));
+			}
+			description = request.getString("description");
+
+			req_in_params.clear();
+			req_out_params.clear();
+			req_in_params.addAll(in_params);
+			req_out_params.addAll(out_params);
+			req_description = description;
+    	}
+    	catch(Exception ex)
+        {
+            ex.printStackTrace();
+        }
+    	
     }
 
 
@@ -200,7 +247,10 @@ public class WebServiceDiscovery {
         List<String> reqKeywords = new ArrayList<String>();
         ServiceDescMatchingEngine serviceDescMatching = new ServiceDescMatchingEngine();
 
-        get_req_details("1personbicyclecar_price_service.owls");
+        // get_req_details("1personbicyclecar_price_service.owls");
+        get_req_details("input_query.json");
+
+
         serviceDescMatching.extractKeywords(req_description, reqKeywords);
         while((adv_file = br.readLine())!=null){
         	match_score = get_match_score(adv_file, reqKeywords);
