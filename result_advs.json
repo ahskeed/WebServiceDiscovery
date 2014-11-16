@@ -1,0 +1,82 @@
+{
+    "carcycle_price_service.owls": {
+        "input": [
+            "http://127.0.0.1/ontology/my_ontology.owl#Cycle",
+            "http://127.0.0.1/ontology/my_ontology.owl#Car"
+        ],
+        "description": " This service returns purchase prices of the pair of a car and cycle (the prices contain both new or used cars or cycles). ",
+        "output": ["http://127.0.0.1/ontology/concept.owl#Price"]
+    },
+    "carbicycle_price_service.owls": {
+        "input": [
+            "http://127.0.0.1/ontology/my_ontology.owl#Cycle",
+            "http://127.0.0.1/ontology/my_ontology.owl#Car"
+        ],
+        "description": " This service returns purchase prices of the pair of a car and cycle (the prices contain both new or used cars or cycles). ",
+        "output": ["http://127.0.0.1/ontology/concept.owl#Price"]
+    },
+    "bicycleauto_price_service.owls": {
+        "input": [
+            "http://127.0.0.1/ontology/my_ontology.owl#Cycle",
+            "http://127.0.0.1/ontology/my_ontology.owl#Car"
+        ],
+        "description": " This service returns purchase prices of the pair of a car and cycle (the prices contain both new or used cars or cycles). ",
+        "output": ["http://127.0.0.1/ontology/concept.owl#Price"]
+    },
+    "autobicycle_price_service.owls": {
+        "input": [
+            "http://127.0.0.1/ontology/my_ontology.owl#Cycle",
+            "http://127.0.0.1/ontology/my_ontology.owl#Car"
+        ],
+        "description": " This service returns purchase prices of the pair of a car and cycle (the prices contain both new or used cars or cycles). ",
+        "output": ["http://127.0.0.1/ontology/concept.owl#Price"]
+    },
+    "bicyclecar_price_service.owls": {
+        "input": [
+            "http://127.0.0.1/ontology/my_ontology.owl#Cycle",
+            "http://127.0.0.1/ontology/my_ontology.owl#Car"
+        ],
+        "description": " This service returns purchase prices of the pair of a car and cycle (the prices contain both new or used cars or cycles). ",
+        "output": ["http://127.0.0.1/ontology/concept.owl#Price"]
+    },
+    "1personbicyclecar_price_TheBestservice.owls": {
+        "input": [
+            "http://127.0.0.1/ontology/my_ontology.owl#Cycle",
+            "http://127.0.0.1/ontology/my_ontology.owl#Car"
+        ],
+        "description": " This service returns purchase prices of the pair of a car and cycle (the prices contain both new or used cars or cycles). ",
+        "output": ["http://127.0.0.1/ontology/concept.owl#Price"]
+    },
+    "auto1personbicycle_price_service.owls": {
+        "input": [
+            "http://127.0.0.1/ontology/my_ontology.owl#Cycle",
+            "http://127.0.0.1/ontology/my_ontology.owl#Car"
+        ],
+        "description": " This service returns purchase prices of the pair of a car and cycle (the prices contain both new or used cars or cycles). ",
+        "output": ["http://127.0.0.1/ontology/concept.owl#Price"]
+    },
+    "autocycle_price_service.owls": {
+        "input": [
+            "http://127.0.0.1/ontology/my_ontology.owl#Cycle",
+            "http://127.0.0.1/ontology/my_ontology.owl#Car"
+        ],
+        "description": " This service returns purchase prices of the pair of a car and cycle (the prices contain both new or used cars or cycles). ",
+        "output": ["http://127.0.0.1/ontology/concept.owl#Price"]
+    },
+    "1personbicyclecar_price_service.owls": {
+        "input": [
+            "http://127.0.0.1/ontology/my_ontology.owl#Cycle",
+            "http://127.0.0.1/ontology/my_ontology.owl#Car"
+        ],
+        "description": " This service returns purchase prices of the pair of a car and cycle (the prices contain both new or used cars or cycles). ",
+        "output": ["http://127.0.0.1/ontology/concept.owl#Price"]
+    },
+    "1personbicyclecar_price_Kohlservice.owls": {
+        "input": [
+            "http://127.0.0.1/ontology/my_ontology.owl#Cycle",
+            "http://127.0.0.1/ontology/my_ontology.owl#Car"
+        ],
+        "description": " This service returns purchase prices of the pair of a car and cycle (the prices contain both new or used cars or cycles). ",
+        "output": ["http://127.0.0.1/ontology/concept.owl#Price"]
+    }
+}
