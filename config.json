@@ -1,0 +1,1 @@
+{"input":["my_ontology.owl#Car","my_ontology.owl#Bicycle"],"output":["concept.owl#Price"],"description":"This service returns renting price of the pair of a car model and one person bicycle model. The price of car and bicycle is for one day rent."}

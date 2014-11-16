@@ -248,7 +248,7 @@ public class WebServiceDiscovery {
         ServiceDescMatchingEngine serviceDescMatching = new ServiceDescMatchingEngine();
 
         // get_req_details("1personbicyclecar_price_service.owls");
-        get_req_details("input_query.json");
+        get_req_details("config.json");
 
 
         serviceDescMatching.extractKeywords(req_description, reqKeywords);
