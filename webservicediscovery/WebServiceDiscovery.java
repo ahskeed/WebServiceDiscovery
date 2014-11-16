@@ -214,13 +214,15 @@ public class WebServiceDiscovery {
 			int num=0;
 			String adv_file;
 			double score;
-			JSONObject adv = new JSONObject();
+			
 			JSONObject results = new JSONObject();
 			FileWriter fileWriter = new FileWriter("result_advs.json");
 			for (Map.Entry<String, Double> entry : map.entrySet()) {
 				adv_file = entry.getKey();
 				score = entry.getValue();
 				get_adv_details(base_path+"/services/1.1/"+adv_file);
+                System.out.println(adv_description);
+                JSONObject adv = new JSONObject();
 				adv.put("input", adv_in_params);
 				adv.put("output", adv_out_params);
 				adv.put("description", adv_description);

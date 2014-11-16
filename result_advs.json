@@ -9,74 +9,74 @@
     },
     "carbicycle_price_service.owls": {
         "input": [
-            "http://127.0.0.1/ontology/my_ontology.owl#Cycle",
+            "http://127.0.0.1/ontology/my_ontology.owl#Bicycle",
             "http://127.0.0.1/ontology/my_ontology.owl#Car"
         ],
-        "description": " This service returns purchase prices of the pair of a car and cycle (the prices contain both new or used cars or cycles). ",
+        "description": " This service returns purchase prices of the pair of a car and bicycle (the prices contain both new or used cars or bicycles). ",
+        "output": ["http://127.0.0.1/ontology/concept.owl#Price"]
+    },
+    "4wheeledcarbicycle_price_service.owls": {
+        "input": [
+            "http://127.0.0.1/ontology/my_ontology.owl#Bicycle",
+            "http://127.0.0.1/ontology/my_ontology.owl#FourWheeledCar"
+        ],
+        "description": " This service returns purchase price of the pair of a four wheeled car and bicycle. ",
         "output": ["http://127.0.0.1/ontology/concept.owl#Price"]
     },
     "bicycleauto_price_service.owls": {
         "input": [
-            "http://127.0.0.1/ontology/my_ontology.owl#Cycle",
-            "http://127.0.0.1/ontology/my_ontology.owl#Car"
+            "http://127.0.0.1/ontology/my_ontology.owl#Auto",
+            "http://127.0.0.1/ontology/my_ontology.owl#Bicycle"
         ],
-        "description": " This service returns purchase prices of the pair of a car and cycle (the prices contain both new or used cars or cycles). ",
+        "description": " This service returns latest purchase market price of the requested pair of an auto model and a bicycle model. ",
         "output": ["http://127.0.0.1/ontology/concept.owl#Price"]
     },
     "autobicycle_price_service.owls": {
         "input": [
-            "http://127.0.0.1/ontology/my_ontology.owl#Cycle",
-            "http://127.0.0.1/ontology/my_ontology.owl#Car"
+            "http://127.0.0.1/ontology/my_ontology.owl#Bicycle",
+            "http://127.0.0.1/ontology/my_ontology.owl#Auto"
         ],
-        "description": " This service returns purchase prices of the pair of a car and cycle (the prices contain both new or used cars or cycles). ",
+        "description": " This service returns daily renting price of the pair of an auto model and a bicycle model. ",
+        "output": ["http://127.0.0.1/ontology/concept.owl#Price"]
+    },
+    "auto2personbicycle_price_service.owls": {
+        "input": [
+            "http://127.0.0.1/ontology/my_ontology.owl#TwoPersonBicycle",
+            "http://127.0.0.1/ontology/my_ontology.owl#Auto"
+        ],
+        "description": " This service returns daily renting price of the pair of an auto model and 2(two) person bicycle. ",
         "output": ["http://127.0.0.1/ontology/concept.owl#Price"]
     },
     "bicyclecar_price_service.owls": {
         "input": [
-            "http://127.0.0.1/ontology/my_ontology.owl#Cycle",
-            "http://127.0.0.1/ontology/my_ontology.owl#Car"
+            "http://127.0.0.1/ontology/my_ontology.owl#Car",
+            "http://127.0.0.1/ontology/my_ontology.owl#Bicycle"
         ],
-        "description": " This service returns purchase prices of the pair of a car and cycle (the prices contain both new or used cars or cycles). ",
+        "description": " This service returns daily renting price of the requested pair of a car model and a bicycle model. ",
         "output": ["http://127.0.0.1/ontology/concept.owl#Price"]
     },
     "1personbicyclecar_price_TheBestservice.owls": {
         "input": [
-            "http://127.0.0.1/ontology/my_ontology.owl#Cycle",
-            "http://127.0.0.1/ontology/my_ontology.owl#Car"
+            "http://127.0.0.1/ontology/my_ontology.owl#Car",
+            "http://127.0.0.1/ontology/my_ontology.owl#OnePersonBicycle"
         ],
-        "description": " This service returns purchase prices of the pair of a car and cycle (the prices contain both new or used cars or cycles). ",
+        "description": " It is the best service that returns renting price of the given pair of a car model and 1(one) person bicycle model. The price of car and bicycle pair is for one day rent. ",
         "output": ["http://127.0.0.1/ontology/concept.owl#Price"]
     },
-    "auto1personbicycle_price_service.owls": {
+    "1personbicyclecar_price_service.owls": {
         "input": [
-            "http://127.0.0.1/ontology/my_ontology.owl#Cycle",
-            "http://127.0.0.1/ontology/my_ontology.owl#Car"
+            "http://127.0.0.1/ontology/my_ontology.owl#Car",
+            "http://127.0.0.1/ontology/my_ontology.owl#OnePersonBicycle"
         ],
-        "description": " This service returns purchase prices of the pair of a car and cycle (the prices contain both new or used cars or cycles). ",
+        "description": " This service returns renting price of the pair of a car model and one person bicycle model. The price of car and bicycle is for one day rent. ",
         "output": ["http://127.0.0.1/ontology/concept.owl#Price"]
     },
     "autocycle_price_service.owls": {
         "input": [
             "http://127.0.0.1/ontology/my_ontology.owl#Cycle",
-            "http://127.0.0.1/ontology/my_ontology.owl#Car"
+            "http://127.0.0.1/ontology/my_ontology.owl#Auto"
         ],
-        "description": " This service returns purchase prices of the pair of a car and cycle (the prices contain both new or used cars or cycles). ",
-        "output": ["http://127.0.0.1/ontology/concept.owl#Price"]
-    },
-    "1personbicyclecar_price_service.owls": {
-        "input": [
-            "http://127.0.0.1/ontology/my_ontology.owl#Cycle",
-            "http://127.0.0.1/ontology/my_ontology.owl#Car"
-        ],
-        "description": " This service returns purchase prices of the pair of a car and cycle (the prices contain both new or used cars or cycles). ",
-        "output": ["http://127.0.0.1/ontology/concept.owl#Price"]
-    },
-    "1personbicyclecar_price_Kohlservice.owls": {
-        "input": [
-            "http://127.0.0.1/ontology/my_ontology.owl#Cycle",
-            "http://127.0.0.1/ontology/my_ontology.owl#Car"
-        ],
-        "description": " This service returns purchase prices of the pair of a car and cycle (the prices contain both new or used cars or cycles). ",
+        "description": " This service returns weekly renting price of the given pair of an auto model and a cycle model. ",
         "output": ["http://127.0.0.1/ontology/concept.owl#Price"]
     }
 }
