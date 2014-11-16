@@ -1,0 +1,69 @@
+Func desc matching
+
+1personbicyclecar_price_service.owls : 0.84
+1personbicyclecar_price_TheBestservice.owls : 0.84
+carbicycle_price_service.owls : 0.84
+autobicycle_price_service.owls : 0.84
+bicyclecar_price_service.owls : 0.84
+bicycleauto_price_service.owls : 0.84
+auto1personbicycle_price_service.owls : 0.84
+1personbicyclecar_price_Kohlservice.owls : 0.84
+autocycle_price_service.owls : 1.08
+carcycle_price_service.owls : 1.08
+cheapcar1personbicycle_price_service.owls : 1.32
+1personbicycle4wheeledcar_price_service.owls : 1.32
+4wheeledcarbicycle_price_service.owls : 1.32
+4wheeledcar1personbicycle_price_service.owls : 1.32
+bicycle4wheeledcar_price_service.owls : 1.32
+carbicycle_taxedprice_service.owls : 1.5599999999999998
+autobicycle_taxedprice_service.owls : 1.5599999999999998
+autobicycle_maxprice_service.owls : 1.5599999999999998
+autobicycle_recommendedprice_service.owls : 1.5599999999999998
+carbicycle_recommendedprice_service.owls : 1.5599999999999998
+
+Func + jaccard
+
+1personbicyclecar_price_service.owls : 1.2103703703703703
+1personbicyclecar_price_TheBestservice.owls : 1.2103703703703703
+carbicycle_price_service.owls : 1.2103703703703703
+autobicycle_price_service.owls : 1.2103703703703703
+bicyclecar_price_service.owls : 1.2103703703703703
+bicycleauto_price_service.owls : 1.2103703703703703
+auto1personbicycle_price_service.owls : 1.2103703703703703
+1personbicyclecar_price_Kohlservice.owls : 1.2103703703703703
+autocycle_price_service.owls : 1.4503703703703705
+carcycle_price_service.owls : 1.4503703703703705
+1personbicycle4wheeledcar_price_service.owls : 1.6774074074074075
+cheapcar1personbicycle_price_service.owls : 1.6903703703703705
+4wheeledcarbicycle_price_service.owls : 1.6903703703703705
+4wheeledcar1personbicycle_price_service.owls : 1.6903703703703705
+bicycle4wheeledcar_price_service.owls : 1.6903703703703705
+carbicycle_taxedprice_service.owls : 1.9303703703703703
+autobicycle_taxedprice_service.owls : 1.9303703703703703
+autobicycle_maxprice_service.owls : 1.9303703703703703
+autobicycle_recommendedprice_service.owls : 1.9303703703703703
+carbicycle_recommendedprice_service.owls : 1.9303703703703703
+
+Func + levenshtein
+
+1personbicyclecar_price_service.owls : 1.1573015873015873
+1personbicyclecar_price_TheBestservice.owls : 1.1573015873015873
+carbicycle_price_service.owls : 1.1573015873015873
+autobicycle_price_service.owls : 1.1573015873015873
+bicyclecar_price_service.owls : 1.1573015873015873
+bicycleauto_price_service.owls : 1.1573015873015873
+auto1personbicycle_price_service.owls : 1.1573015873015873
+1personbicyclecar_price_Kohlservice.owls : 1.1573015873015873
+autocycle_price_service.owls : 1.3973015873015875
+carcycle_price_service.owls : 1.3973015873015875
+cheapcar1personbicycle_price_service.owls : 1.6373015873015873
+4wheeledcarbicycle_price_service.owls : 1.6373015873015873
+4wheeledcar1personbicycle_price_service.owls : 1.6373015873015873
+bicycle4wheeledcar_price_service.owls : 1.6373015873015873
+1personbicycle4wheeledcar_price_service.owls : 1.6407671957671959
+carbicycle_taxedprice_service.owls : 1.877301587301587
+autobicycle_taxedprice_service.owls : 1.877301587301587
+autobicycle_maxprice_service.owls : 1.877301587301587
+autobicycle_recommendedprice_service.owls : 1.877301587301587
+carbicycle_recommendedprice_service.owls : 1.877301587301587
+

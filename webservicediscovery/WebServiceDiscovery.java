@@ -169,7 +169,7 @@ public class WebServiceDiscovery {
 			double score;
 			JSONObject adv = new JSONObject();
 			JSONObject results = new JSONObject();
-			FileWriter fileWriter = new FileWriter("result_advs.txt");
+			FileWriter fileWriter = new FileWriter("result_advs.json");
 			for (Map.Entry<String, Double> entry : map.entrySet()) {
 				adv_file = entry.getKey();
 				score = entry.getValue();
@@ -178,12 +178,12 @@ public class WebServiceDiscovery {
 				adv.put("output", adv_out_params);
 				adv.put("description", adv_description);
 				results.put(adv_file, adv);
-				// System.out.println(adv_file + " : " + score);
+				System.out.println(adv_file + " : " + score);
 				num++;
 				if(num==10) break;
 			}
-			System.out.println(results);
-			fileWriter.append(results.toString());
+			fileWriter.write(results.toString(4));
+			fileWriter.close();
 		}
 		catch(Exception e) {
 			e.printStackTrace();
@@ -202,7 +202,6 @@ public class WebServiceDiscovery {
 
         get_req_details("1personbicyclecar_price_service.owls");
         serviceDescMatching.extractKeywords(req_description, reqKeywords);
-
         while((adv_file = br.readLine())!=null){
         	match_score = get_match_score(adv_file, reqKeywords);
             advBipartite.put(adv_file, match_score);
